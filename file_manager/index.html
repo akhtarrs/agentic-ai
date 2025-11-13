@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In-Memory File Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>In-Memory File Manager</header>
+  <main>
+    <div class="toolbar">
+      <button id="uploadBtn">Upload File</button>
+      <input type="file" id="fileUpload" multiple style="display:none;" />
+      <button id="downloadBtn">Download Selected</button>
+      <button id="deleteBtn">Delete Selected</button>
+    </div>
+
+    <table id="fileTable">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAll" /></th>
+          <th>Filename</th>
+          <th>Upload Date</th>
+          <th>File Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic rows appear here -->
+      </tbody>
+    </table>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
