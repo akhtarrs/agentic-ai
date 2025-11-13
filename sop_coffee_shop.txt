@@ -1,0 +1,39 @@
+Title: Sales Data Automation and Upload Workflow
+
+Step 1
+
+Description: Run Excel automation to consolidate sales data.
+Objective: Combine data from multiple Coffee Shop Excel files into a single consolidated report.
+Action:
+
+Execute the Python script excel_merge.py.
+
+The script will:
+
+Read sales data from CoffeeShop1.xlsx to CoffeeShop5.xlsx.
+
+Merge and generate a consolidated workbook named SalesResult.xlsx.
+
+Apply header formatting and create a pivot summary sheet.
+
+Display the resulting Excel file visually for verification.
+Expected Output:
+A formatted Excel file named SalesResult.xlsx saved in the working directory.
+
+Step 2
+
+Description: Upload the generated sales result file to File Manager.
+Objective: Store the consolidated sales report in the organization’s File Manager for accessibility and backup.
+Action:
+
+Execute the Python script file_upload.py.
+
+The script will:
+
+Locate the file SalesResult.xlsx.
+
+Connect securely to the File Manager via API or network location.
+
+Upload the file successfully and confirm completion.
+Expected Output:
+SalesResult.xlsx uploaded successfully and accessible from the File Manager dashboard.

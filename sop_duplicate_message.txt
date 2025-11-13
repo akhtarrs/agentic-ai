@@ -1,0 +1,40 @@
+Title: Duplicate File Detection and Deletion in File Manager
+
+Step 1
+
+Description: Check for duplicate files in the File Manager.
+Objective: Identify all duplicate files stored in the File Manager to maintain data hygiene and optimize storage usage.
+Action:
+
+The system (or agent) should execute the Python script delete_duplicate.py.
+
+The script will:
+
+Connect to the File Manager.
+
+Scan directories and compare file metadata (name, size, hash, etc.).
+
+Identify duplicate files and generate a duplicate file list for verification.
+Expected Output:
+A log or report listing all detected duplicate files in the File Manager.
+
+Step 2
+
+Description: Delete duplicate files from the File Manager.
+Objective: Automatically remove redundant duplicate files identified in Step 1 while ensuring data integrity and retention of one unique copy.
+Action:
+
+Continue the execution of delete_duplicate.py.
+
+The script will:
+
+Safely delete identified duplicate files from the File Manager.
+
+Log each deletion action with timestamp and file details.
+
+Confirm completion of cleanup activity.
+Expected Output:
+
+All duplicate files removed successfully.
+
+A completion log generated with the list of deleted files.
