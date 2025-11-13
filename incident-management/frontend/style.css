@@ -1,0 +1,256 @@
+/*
+    style.css – Basic responsive styling for the Incident Manager UI.
+    ---------------------------------------------------------------
+    • Max‑width container that centers the page content.
+    • Pleasant, system‑safe font stack.
+    • Clean styling for form elements, buttons and the incident table.
+    • Media query ensures the table is scrollable on narrow viewports.
+    • Helper classes for status badges (e.g., .status-open, .status-closed).
+*/
+
+/* ---------------------------------------------------------------
+   Global page layout & typography
+   --------------------------------------------------------------- */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Centered container with a comfortable max‑width */
+section, header {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #2c3e50;
+}
+
+/* ---------------------------------------------------------------
+   Form styling
+   --------------------------------------------------------------- */
+
+form#incident-form {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: grid;
+    gap: 1rem;
+}
+
+form#incident-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+form#incident-form label {
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #555;
+}
+
+form#incident-form input[type="text"],
+form#incident-form textarea {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.2s ease-in-out;
+}
+
+form#incident-form input[type="text"]:focus,
+form#incident-form textarea:focus {
+    outline: none;
+    border-color: #2980b9;
+}
+
+form#incident-form button {
+    align-self: flex-start;
+    padding: 0.6rem 1.2rem;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form#incident-form button:hover {
+    background-color: #1f6391;
+}
+
+/* ---------------------------------------------------------------
+   Refresh button styling (stand‑alone button outside the form)
+   --------------------------------------------------------------- */
+
+#refresh-btn {
+    display: block;
+    margin: 0 auto 2rem auto;
+    padding: 0.6rem 1.2rem;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#refresh-btn:hover {
+    background-color: #1e8449;
+}
+
+/* ---------------------------------------------------------------
+   Table styling
+   --------------------------------------------------------------- */
+
+table#incident-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table#incident-table th,
+table#incident-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+}
+
+table#incident-table th {
+    background-color: #f1f1f1;
+    font-weight: 600;
+    color: #555;
+}
+
+table#incident-table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+/* Action buttons inside the table (e.g., edit / delete) */
+.table-action-btn {
+    padding: 0.3rem 0.6rem;
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+    transition: opacity 0.2s ease;
+}
+
+.table-action-btn.edit {
+    background-color: #f39c12;
+}
+
+.table-action-btn.delete {
+    background-color: #c0392b;
+}
+
+.table-action-btn:hover {
+    opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------
+   Status badge styling – these classes are added dynamically by JS
+   --------------------------------------------------------------- */
+
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.status-open {
+    background-color: #27ae60;   /* green */
+}
+
+.status-closed {
+    background-color: #7f8c8d;   /* grey */
+}
+
+.status-in-progress {
+    background-color: #f1c40f;   /* yellow */
+}
+
+.status-pending {
+    background-color: #e67e22;   /* orange */
+}
+
+/* ---------------------------------------------------------------
+   Responsive behaviour – make the table scrollable on small screens
+   --------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    /* Stack form fields vertically – already column layout, just tighten */
+    form#incident-form {
+        padding: 1rem;
+    }
+
+    /* Allow the table to be scrolled horizontally */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table#incident-table {
+        min-width: 600px; /* ensures horizontal scroll when viewport is narrower */
+    }
+}
+
+/* ---------------------------------------------------------------
+   Helper wrapper – we add this class in HTML via JS if needed.
+   --------------------------------------------------------------- */
+
+/* If you prefer the table to stack into block rows instead of scrolling,
+   uncomment the following block. It transforms each cell into a pseudo‑
+   label/value pair. */
+/*
+@media (max-width: 600px) {
+    table#incident-table, table#incident-table thead, table#incident-table tbody, table#incident-table th, table#incident-table td, table#incident-table tr {
+        display: block;
+    }
+    table#incident-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    table#incident-table tr { margin-bottom: 1rem; }
+    table#incident-table td {
+        padding-left: 50%;
+        position: relative;
+    }
+    table#incident-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 0.5rem;
+        font-weight: 600;
+        color: #555;
+    }
+}
+*/
